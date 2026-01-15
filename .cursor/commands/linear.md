@@ -1,0 +1,2 @@
+Refine the UI in the style of Linear. However, avoid excessive animations, hover states, etc. Keep the CSS as minimal as possible. Consolidate the styles if many miscoordinated classes can be replaced with a smaller set of unified set of classes.
+Instead of a different font-size for every class, have a few standard font sizes.

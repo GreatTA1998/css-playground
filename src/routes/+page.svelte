@@ -1,8 +1,6 @@
 <script>
-  import Flexbox from '$lib/components/Flexbox.svelte'
+  import { redirect } from '@sveltejs/kit';
+  
+  // Redirect to the first component by default
+  throw redirect(302, '/instagram-aspect-ratios');
 </script>
-
-<h1>CSS edge cases</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-
-<Flexbox />
