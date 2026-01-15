@@ -1,12 +1,19 @@
 <div class="container">
 	<button commandfor="my-dialog" command="show-modal" class="button">Open dialog</button>
 
-	<dialog closedby="any" id="my-dialog" class="dialog">
+	<dialog closedby="any" id="my-dialog">
 		<div class="dialog-content">
 			<h2 class="dialog-title">Modal Dialog</h2>
-			<p class="dialog-description">
-				Light dismiss behavior, but page is inert.
-			</p>
+      <div>Light dismiss, with rest of page inert, pure HTML</div>
+			<div class="dialog-description">
+				<pre><code>&lt;button commandfor="my-dialog" command="show-modal" class="button"&gt;
+  Open dialog
+&lt;/button&gt;
+
+&lt;dialog closedby="any" id="my-dialog"&gt;
+
+&lt;/dialog&gt;</code></pre>
+			</div>
 		</div>
 	</dialog>
 
@@ -130,19 +137,8 @@
 		font-family: inherit;
 	}
 
-	.dialog {
-		padding: 0;
-		border: none;
-		border-radius: 12px;
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-		max-width: 480px;
-		width: calc(100% - 2rem);
-		margin: auto;
-		background: #ffffff;
-	}
-
-	.dialog::backdrop {
-		background: rgba(0, 0, 0, 0.4);
+	::backdrop {
+		background: rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(4px);
 	}
 
@@ -167,6 +163,27 @@
 		color: #6b7280;
 		margin: 0;
 		line-height: 1.6;
+	}
+
+	.dialog-description pre {
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		font-family: inherit;
+	}
+
+	.dialog-description pre code {
+		font-size: 0.875rem;
+		font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+		background: #f9fafb;
+		padding: 1rem;
+		border-radius: 6px;
+		border: 1px solid #e5e7eb;
+		color: #0d0d0d;
+		display: block;
+		white-space: pre;
+		overflow-x: auto;
+		line-height: 1.5;
 	}
 
 	.definitions {
