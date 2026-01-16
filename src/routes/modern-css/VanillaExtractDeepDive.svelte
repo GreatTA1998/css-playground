@@ -43,12 +43,10 @@ export const heading = style({
 
 // src/routes/about/+page.svelte
 <script>
-  import * as t from '$lib/styles/typography.css';
+  import { heading } from '$lib/styles/typography.css';
 </script>
 
-<h1 class={t.heading}>About Page</h1>
-
-// ✅ Type-safe, zero-runtime, reusable`)}</code></pre>
+<h1 class={heading}>About Page</h1>`)}</code></pre>
 				</div>
 				<div class="use-case-visual">
 					<div class="shared-demo">
@@ -81,18 +79,16 @@ export const dynamicBox = style({
 
 // src/lib/components/DynamicCard.svelte
 <script>
-  import * as s from '$lib/styles/components.css';
+  import { dynamicBox } from '$lib/styles/components.css';
   
   let color = '#3b82f6';
   let size = 16;
   $: cssVars = \`--color: \${color}; --size: \${size}px;\`;
 </script>
 
-<div class={s.dynamicBox} style={cssVars}>
+<div class={dynamicBox} style={cssVars}>
   Dynamic Content
-</div>
-
-// ✅ Build-time CSS + reactive variables`)}</code></pre>
+</div>`)}</code></pre>
 				</div>
 				<div class="use-case-visual">
 					<div class="dynamic-controls-small">
@@ -153,28 +149,25 @@ export const flexCol = style({ flexDirection: 'column' });
 export const gap = (size: string) => style({ gap: size });
 
 // Instead of: display: flex; align-items: center; row-gap: 4px;
-// Just use: class={u.flexCenterGap}
+// Just use: class={flexCenterGap}
 
 // src/lib/components/NavBar.svelte
 <script>
-  import * as u from '$lib/styles/utilities.css';
+  import { flexCenterGap, flexCol, gap } from '$lib/styles/utilities.css';
   
   let isActive = false;
+  let isMobile = false;
 </script>
 
-<!-- Works with Svelte's class directive arrays/objects -->
-<nav class={[u.flexCenterGap, { [u.flexCol]: isMobile }]}>
-  <a class={isActive ? u.active : ''}>Home</a>
+<nav class={[flexCenterGap, { [flexCol]: isMobile }]}>
+  <a class={isActive ? 'active' : ''}>Home</a>
   <a>About</a>
 </nav>
 
-<!-- Or combine multiple utilities -->
-<div class={u.flex + ' ' + u.gap('1rem')}>
+<div class={flexCenterGap + ' ' + gap('1rem')}>
   <button>Click</button>
   <button>More</button>
-</div>
-
-// ✅ Concise, type-safe, compatible with Svelte's class syntax`)}</code></pre>
+</div>`)}</code></pre>
 				</div>
 				<div class="use-case-visual">
 					<div class="utility-demo">
@@ -221,40 +214,35 @@ export const card = recipe({
 
 // src/lib/components/ButtonGroup.svelte
 <script>
-  import * as styles from '$lib/styles/components.css';
-  import * as u from '$lib/styles/utilities.css';
+  import { button, buttonSecondary, card } from '$lib/styles/components.css';
+  import { flexCenterGap } from '$lib/styles/utilities.css';
   
   let isSelected = false;
   let isDisabled = false;
 </script>
 
-<!-- Array syntax - Svelte converts to string -->
-<button class={[styles.button, u.flexCenterGap]}>
+<button class={[button, flexCenterGap]}>
   <span>Icon</span>
   <span>Label</span>
 </button>
 
-<!-- Object syntax - conditional classes -->
 <button 
   class={{
-    [styles.button]: true,
-    [styles.buttonSecondary]: isSelected,
-    [styles.disabled]: isDisabled
+    [button]: true,
+    [buttonSecondary]: isSelected,
+    disabled: isDisabled
   }}
 >
   Toggle
 </button>
 
-<!-- Mix arrays, objects, and strings -->
 <div class={[
-  u.flexCenterGap,
-  styles.card({ elevation: 'md' }),
+  flexCenterGap,
+  card({ elevation: 'md' }),
   { 'custom-class': isSelected }
 ]}>
   Content
-</div>
-
-// ✅ Full compatibility with Svelte's class directive`)}</code></pre>
+</div>`)}</code></pre>
 				</div>
 				<div class="use-case-visual">
 					<div class="composition-demo">
@@ -273,22 +261,28 @@ export const card = recipe({
 		</div>
 	</div>
 
-	<div class="vanilla-summary">
-		<h3>Key Takeaways</h3>
-		<div class="summary-grid">
-			<div class="summary-item">
-				<strong>✅ Sharing:</strong> Import styles from shared modules - type-safe and zero-runtime, works across routes and components
-			</div>
-			<div class="summary-item">
-				<strong>✅ Dynamic:</strong> CSS variables + Svelte reactive state for runtime values - no CSS-in-JS runtime overhead
-			</div>
-			<div class="summary-item">
-				<strong>✅ Less Verbose:</strong> Utility functions and recipes reduce repetition while maintaining type safety
-			</div>
-			<div class="summary-item">
-				<strong>✅ Composition:</strong> Combine base styles, variants, and recipes - works seamlessly with Svelte's class directive
-			</div>
-		</div>
+	<div class="references">
+		<h3>References</h3>
+		<ul class="references-list">
+			<li>
+				<a href="https://svelte.dev/tutorial/svelte/classes" target="_blank" rel="noopener noreferrer">
+					Svelte Class Directive Documentation
+				</a>
+				<span class="reference-description">— Official guide on Svelte's class attribute with arrays and objects</span>
+			</li>
+			<li>
+				<a href="https://dev.to/alexsergey/css-modules-vs-css-in-js-who-wins-3n25#cons" target="_blank" rel="noopener noreferrer">
+					CSS Modules vs CSS-in-JS Comparison
+				</a>
+				<span class="reference-description">— Detailed analysis of performance and developer experience tradeoffs</span>
+			</li>
+			<li>
+				<a href="https://www.glean.com/blog/optimizing-our-css-at-glean" target="_blank" rel="noopener noreferrer">
+					Optimizing CSS at Glean
+				</a>
+				<span class="reference-description">— Real-world migration from inline styles to vanilla-extract</span>
+			</li>
+		</ul>
 	</div>
 </div>
 
@@ -557,36 +551,50 @@ export const card = recipe({
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	}
 
-	/* Summary */
-	.vanilla-summary {
-		background: #f0f9ff;
-		border: 1px solid #bae6fd;
-		border-radius: 8px;
-		padding: 1.5rem;
-		margin-top: 2rem;
+	/* References */
+	.references {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid #e5e7eb;
 	}
 
-	.vanilla-summary h3 {
-		font-size: 1.125rem;
+	.references h3 {
+		font-size: 1rem;
 		font-weight: 600;
 		margin: 0 0 1rem;
-		color: #0c4a6e;
+		color: #0d0d0d;
 	}
 
-	.summary-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+	.references-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
 		gap: 0.75rem;
 	}
 
-	.summary-item {
-		font-size: 0.875rem;
-		color: #0c4a6e;
-		line-height: 1.5;
+	.references-list li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 
-	.summary-item strong {
-		font-weight: 600;
+	.references-list a {
+		font-size: 0.875rem;
+		color: #3b82f6;
+		text-decoration: none;
+		font-weight: 500;
+	}
+
+	.references-list a:hover {
+		text-decoration: underline;
+	}
+
+	.reference-description {
+		font-size: 0.8125rem;
+		color: #6b7280;
+		line-height: 1.4;
 	}
 
 	@media (max-width: 968px) {
