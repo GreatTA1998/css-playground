@@ -7,7 +7,8 @@
 	const navItems = [
 		{ path: '/dialog-modal-popover', label: 'Dialog/Modal/Popover' },
 		{ path: '/flexbox-multiline-shrink-wrap', label: 'Flexbox Multiline Shrink Wrap' },
-		{ path: '/instagram-aspect-ratios', label: 'Instagram Aspect Ratios' }
+		{ path: '/instagram-aspect-ratios', label: 'Instagram Aspect Ratios' },
+		{ path: '/modern-css', label: 'Modern CSS' }
 	];
 
 	const currentPath = $derived($page.url.pathname);
