@@ -552,107 +552,109 @@ const dynamicStyle = (color: string, size: number) =>
 		</div>
 	</div>
 
-	<div class="example-section">
-		{#if selectedExample === 'layout'}
-			{@const example = layoutExamples[selectedEra]}
-			{@const decodedCode = decodeHtmlEntities(example.code)}
-			<div class="example-header">
-				<h3>{example.title}</h3>
-				<p class="example-description">{example.description}</p>
-			</div>
-
-			<div class="example-content">
-				<div class="code-block">
-					<pre><code>{decodedCode}</code></pre>
+	{#if selectedExample !== 'vanilla-extract-deep'}
+		<div class="example-section">
+			{#if selectedExample === 'layout'}
+				{@const example = layoutExamples[selectedEra]}
+				{@const decodedCode = decodeHtmlEntities(example.code)}
+				<div class="example-header">
+					<h3>{example.title}</h3>
+					<p class="example-description">{example.description}</p>
 				</div>
 
-				<div class="visual-demo layout-demo">
-					<div class="visual-container">
-						<aside class="visual-sidebar">Sidebar</aside>
-						<main class="visual-content">Main Content</main>
+				<div class="example-content">
+					<div class="code-block">
+						<pre><code>{decodedCode}</code></pre>
+					</div>
+
+					<div class="visual-demo layout-demo">
+						<div class="visual-container">
+							<aside class="visual-sidebar">Sidebar</aside>
+							<main class="visual-content">Main Content</main>
+						</div>
 					</div>
 				</div>
-			</div>
-		{:else if selectedExample === 'reuse'}
-			{@const example = reuseExamples[selectedEra]}
-			{@const decodedCode = decodeHtmlEntities(example.code)}
-			<div class="example-header">
-				<h3>{example.title}</h3>
-				<p class="example-description">{example.description}</p>
-			</div>
-
-			<div class="example-content">
-				<div class="code-block">
-					<pre><code>{decodedCode}</code></pre>
+			{:else if selectedExample === 'reuse'}
+				{@const example = reuseExamples[selectedEra]}
+				{@const decodedCode = decodeHtmlEntities(example.code)}
+				<div class="example-header">
+					<h3>{example.title}</h3>
+					<p class="example-description">{example.description}</p>
 				</div>
 
-				<div class="visual-demo reuse-demo">
-					<div class="visual-reuse">
-						<h1 class="visual-heading">Title 1</h1>
-						<h1 class="visual-heading">Title 2</h1>
-						<h1 class="visual-heading">Title 3</h1>
+				<div class="example-content">
+					<div class="code-block">
+						<pre><code>{decodedCode}</code></pre>
+					</div>
+
+					<div class="visual-demo reuse-demo">
+						<div class="visual-reuse">
+							<h1 class="visual-heading">Title 1</h1>
+							<h1 class="visual-heading">Title 2</h1>
+							<h1 class="visual-heading">Title 3</h1>
+						</div>
 					</div>
 				</div>
-			</div>
-		{:else}
-			{@const example = dynamicExamples[selectedEra]}
-			{@const decodedCode = decodeHtmlEntities(example.code)}
-			<div class="example-header">
-				<h3>{example.title}</h3>
-				<p class="example-description">
-					{example.description}
-					{#if !example.possible}
-						<span class="not-possible-badge">Not Possible</span>
-					{/if}
-				</p>
-			</div>
-
-			<div class="example-content">
-				<div class="code-block">
-					<pre><code>{decodedCode}</code></pre>
+			{:else if selectedExample === 'dynamic'}
+				{@const example = dynamicExamples[selectedEra]}
+				{@const decodedCode = decodeHtmlEntities(example.code)}
+				<div class="example-header">
+					<h3>{example.title}</h3>
+					<p class="example-description">
+						{example.description}
+						{#if !example.possible}
+							<span class="not-possible-badge">Not Possible</span>
+						{/if}
+					</p>
 				</div>
 
-				<div class="visual-demo dynamic-demo">
-					{#if !example.possible}
-						<div class="not-possible-message">
-							<p>❌ Dynamic styling not possible with this approach</p>
-							<p class="note">Must use inline styles or JavaScript workarounds</p>
-						</div>
-					{:else}
-						<div class="dynamic-controls">
-							<div class="control-group">
-								<label for="color">Color:</label>
-								<input
-									type="color"
-									id="color"
-									bind:value={dynamicColor}
-									class="color-input"
-								/>
-								<span class="color-value">{dynamicColor}</span>
+				<div class="example-content">
+					<div class="code-block">
+						<pre><code>{decodedCode}</code></pre>
+					</div>
+
+					<div class="visual-demo dynamic-demo">
+						{#if !example.possible}
+							<div class="not-possible-message">
+								<p>❌ Dynamic styling not possible with this approach</p>
+								<p class="note">Must use inline styles or JavaScript workarounds</p>
 							</div>
-							<div class="control-group">
-								<label for="size">Font Size: {dynamicSize}px</label>
-								<input
-									type="range"
-									id="size"
-									min="12"
-									max="24"
-									bind:value={dynamicSize}
-									class="size-input"
-								/>
+						{:else}
+							<div class="dynamic-controls">
+								<div class="control-group">
+									<label for="color">Color:</label>
+									<input
+										type="color"
+										id="color"
+										bind:value={dynamicColor}
+										class="color-input"
+									/>
+									<span class="color-value">{dynamicColor}</span>
+								</div>
+								<div class="control-group">
+									<label for="size">Font Size: {dynamicSize}px</label>
+									<input
+										type="range"
+										id="size"
+										min="12"
+										max="24"
+										bind:value={dynamicSize}
+										class="size-input"
+									/>
+								</div>
 							</div>
-						</div>
-						<div
-							class="dynamic-box"
-							style="--color: {dynamicColor}; --size: {dynamicSize}px;"
-						>
-							Dynamic Content
-						</div>
-					{/if}
+							<div
+								class="dynamic-box"
+								style="--color: {dynamicColor}; --size: {dynamicSize}px;"
+							>
+								Dynamic Content
+							</div>
+						{/if}
+					</div>
 				</div>
-			</div>
-		{/if}
-	</div>
+			{/if}
+		</div>
+	{/if}
 </div>
 
 <style>

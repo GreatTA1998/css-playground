@@ -1,9 +1,9 @@
 <script lang="ts">
-	import CssEvolutionDemo from '$lib/components/CssEvolutionDemo.svelte';
+	import CssEvolutionDemo from './CssEvolutionDemo.svelte';
+	import VanillaExtractDeepDive from './VanillaExtractDeepDive.svelte';
 
 	type TimelineEvent = {
 		year: number;
-		quarter?: number;
 		title: string;
 		description: string;
 	};
@@ -28,7 +28,6 @@
 		// CSS Introduction
 		{
 			year: 1994,
-			quarter: 4,
 			title: 'CSS Proposed',
 			description: 'Håkon Wium Lie proposes Cascading Style Sheets. Separation of content (HTML) and presentation (CSS).'
 		},
@@ -91,7 +90,6 @@
 		// Modern Tooling Era
 		{
 			year: 2017,
-			quarter: 4,
 			title: 'Tailwind CSS v0.1',
 			description: 'Adam Wathan releases Tailwind CSS. Utility-first CSS framework. Challenges component-based CSS approaches.'
 		},
@@ -111,11 +109,6 @@
 			description: 'Container queries proposed. Style based on container size, not viewport. More flexible responsive design.'
 		},
 		{
-			year: 2021,
-			title: 'CSS Nesting',
-			description: 'Native CSS nesting proposed. Reduces need for preprocessors. SASS-like syntax coming to native CSS.'
-		},
-		{
 			year: 2022,
 			title: 'CSS Container Queries Support',
 			description: 'Container queries gain browser support. Revolutionary for component-based design. Less reliance on media queries.'
@@ -129,12 +122,6 @@
 			year: 2024,
 			title: 'CSS Layers',
 			description: 'CSS Cascade Layers mature. Better control over specificity and cascade. Solves CSS architecture problems.'
-		},
-		{
-			year: 2024,
-			quarter: 2,
-			title: 'CSS View Transitions',
-			description: 'View Transitions API. Smooth transitions between page states. Native alternative to JavaScript animation libraries.'
 		}
 	];
 
@@ -151,6 +138,8 @@
 
 <div class="container">
 	<CssEvolutionDemo />
+	
+	<VanillaExtractDeepDive />
 
 	<div class="timeline">
 		<div class="timeline-line"></div>

@@ -5,7 +5,7 @@
 	let { children } = $props();
 
 	const navItems = [
-		{ path: '/dialog-modal-popover', label: 'Dialog/Modal/Popover' },
+		{ path: '/dialog-modal-popover', label: 'Dialog vs Popover' },
 		{ path: '/flexbox-multiline-shrink-wrap', label: 'Flexbox Multiline Shrink Wrap' },
 		{ path: '/instagram-aspect-ratios', label: 'Instagram Aspect Ratios' },
 		{ path: '/modern-css', label: 'Modern CSS' }
@@ -45,6 +45,7 @@
 		z-index: 100;
 		backdrop-filter: blur(10px);
 		background: rgba(255, 255, 255, 0.95);
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	}
 
 	.nav-container {
@@ -62,6 +63,7 @@
 		color: #6b7280;
 		font-size: 0.875rem;
 		font-weight: 500;
+		font-family: inherit;
 		white-space: nowrap;
 		border-bottom: 2px solid transparent;
 		transition: all 0.2s ease;
